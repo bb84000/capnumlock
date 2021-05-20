@@ -1,0 +1,75 @@
+object AlertBox: TAlertBox
+  Left = 894
+  Height = 129
+  Top = 283
+  Width = 400
+  BorderStyle = bsDialog
+  Caption = 'AlertBox'
+  ClientHeight = 129
+  ClientWidth = 400
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poMainFormCenter
+  LCLVersion = '2.0.6.0'
+  object PnlMessage: TPanel
+    Left = 10
+    Height = 74
+    Top = 8
+    Width = 380
+    Alignment = taLeftJustify
+    BevelInner = bvLowered
+    ClientHeight = 74
+    ClientWidth = 380
+    TabOrder = 0
+    object Image1: TImage
+      Left = 10
+      Height = 32
+      Top = 5
+      Width = 32
+    end
+    object LAlert: TLabel
+      Left = 56
+      Height = 15
+      Top = 5
+      Width = 312
+      Anchors = [akTop, akLeft, akRight]
+      Caption = 'AlertText'
+      Constraints.MinWidth = 312
+      ParentColor = False
+      WordWrap = True
+    end
+  end
+  object CBNoShowAlert: TCheckBox
+    Left = 14
+    Height = 19
+    Top = 95
+    Width = 198
+    Caption = 'Ne plus afficher cet avertissement'
+    TabOrder = 1
+  end
+  object BtnCancel: TBitBtn
+    Left = 315
+    Height = 25
+    Top = 93
+    Width = 75
+    Cancel = True
+    DefaultCaption = True
+    Kind = bkCancel
+    ModalResult = 2
+    NumGlyphs = 2
+    OnClick = BtnCancelClick
+    TabOrder = 2
+  end
+  object BtnOK: TBitBtn
+    Left = 230
+    Height = 25
+    Top = 93
+    Width = 75
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    NumGlyphs = 2
+    TabOrder = 3
+  end
+end
