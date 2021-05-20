@@ -17,7 +17,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="5"/>
-      <StringTable Comments="Caps lock and num lock indicator in tray" CompanyName="bb - sdtp" FileDescription="Caps lock and num lock indicator" InternalName="capnumlock" LegalCopyright="bb - sdtp - may 2021" LegalTrademarks="bb - sdtp - may 2021" OriginalFilename="capnumlock.exe" ProductName="capnumlock" ProductVersion="0.5.0.0"/>
+      <RevisionNr Value="1"/>
+      <StringTable Comments="Caps lock and num lock indicator in tray" CompanyName="bb - sdtp" FileDescription="Caps lock and num lock indicator" InternalName="capnumlock" LegalCopyright="bb - sdtp - may 2021" LegalTrademarks="bb - sdtp - may 2021" OriginalFilename="capnumlock.exe" ProductName="capnumlock" ProductVersion="0.5.1.0"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -68,7 +69,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="capnumlock"/>
+      <Filename Value="capnumlock$(TargetOS)"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -76,6 +77,8 @@
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
+      <TargetCPU Value="x86_64"/>
+      <TargetOS Value="win64"/>
       <Optimizations>
         <OptimizationLevel Value="2"/>
       </Optimizations>

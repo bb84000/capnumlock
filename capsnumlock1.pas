@@ -9,7 +9,9 @@ unit capsnumlock1;
 interface
 
 uses
-  Classes, Graphics, SysUtils, Forms, Controls, Dialogs, StdCtrls,
+    {$IFDEF WINDOWS}
+  Win32Proc,
+  {$ENDIF}Classes, Graphics, SysUtils, Forms, Controls, Dialogs, StdCtrls,
   ComCtrls, ExtCtrls, Menus, UniqueInstance, Windows, LazUTF8,
   lazbbcontrols, lazbbinifiles, lazbbutils, lazbbautostart;
 
@@ -50,6 +52,10 @@ type
     procedure PTrayMnuQuitClick(Sender: TObject);
     procedure PTrayMnuRestoreClick(Sender: TObject);
   private
+    OS, OSTarget: String;
+    LangStr: String;
+    UserAppsDataPath, CnlAppDataPath: String;
+    ProgName: String;
     PrevLeft, PrevTop: Integer;
     Iconized: Boolean;
     pict: TPicture;
@@ -97,17 +103,52 @@ begin
 end;
 
 procedure TfCapnumlock.FormCreate(Sender: TObject);
+var
+  s: string;
+ {$IFDEF Linux}
+    x: Integer;
+ {$ENDIF}
 begin
   inherited;
   Application.OnMinimize:= @OnAppMinimize;
   pict:= TPicture.Create;
   pict.Bitmap.width:= 48;
   pict.Bitmap.height:= 48;
-  cfgfile:= TBbInifile.Create('capnumlock.config');
+
   aLetters[0]:= EBdc;
   aLetters[1]:= ECaps;
   aLetters[2]:= ENoNums;
   aLetters[3]:= ENums;
+  {$IFDEF CPU32}
+     OSTarget := '32 bits';
+  {$ENDIF}
+  {$IFDEF CPU64}
+     OSTarget := '64 bits';
+  {$ENDIF}
+  {$IFDEF Linux}
+    OS := 'Linux';
+    LangStr := GetEnvironmentVariable('LANG');
+    x := pos('.', LangStr);
+    LangStr := Copy(LangStr, 0, 2);
+    //wxbitsrun := 0;
+    //OSTarget:= '';
+    UserAppsDataPath := GetUserDir;
+    // Get mail client
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+    OS := 'Windows ';
+    // get user data folder
+    s := ExtractFilePath(ExcludeTrailingPathDelimiter(GetAppConfigDir(False)));
+    if Ord(WindowsVersion) < 7 then
+      UserAppsDataPath := s                     // NT to XP
+    else
+    UserAppsDataPath := ExtractFilePath(ExcludeTrailingPathDelimiter(s)) + 'Roaming'; // Vista to W10
+    LazGetShortLanguageID(LangStr);
+  {$ENDIF}
+  ProgName:= 'capnumlock';
+  CnlAppDataPath := UserAppsDataPath + PathDelim + ProgName + PathDelim;
+  if not DirectoryExists(CnlAppDataPath) then CreateDir(CnlAppDataPath);
+  cfgfile:= TBbInifile.Create(CnlAppDataPath+'capnumlock.config');
 end;
 
 procedure TfCapnumlock.OnAppMinimize(Sender: TObject);

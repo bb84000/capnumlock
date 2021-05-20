@@ -1,2 +1,5 @@
 Version 0.5.0.0 - 20/05/2021
 - Première version publique
+
+Version 0.5.1.0 - 20/05/2021
+- Installateur et utilisation du répertoire utilisateur pour la configuration

@@ -17,7 +17,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="5"/>
-      <StringTable Comments="Caps lock and num lock indicator in tray" CompanyName="bb - sdtp" FileDescription="Caps lock and num lock indicator" InternalName="capnumlock" LegalCopyright="bb - sdtp - may 2021" LegalTrademarks="bb - sdtp - may 2021" OriginalFilename="capnumlock.exe" ProductName="capnumlock" ProductVersion="0.5.0.0"/>
+      <RevisionNr Value="1"/>
+      <StringTable Comments="Caps lock and num lock indicator in tray" CompanyName="bb - sdtp" FileDescription="Caps lock and num lock indicator" InternalName="capnumlock" LegalCopyright="bb - sdtp - may 2021" LegalTrademarks="bb - sdtp - may 2021" OriginalFilename="capnumlock.exe" ProductName="capnumlock" ProductVersion="0.5.1.0"/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -42,7 +43,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="4">
       <Unit0>
         <Filename Value="capnumlock.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -54,13 +55,21 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="capnumlock.txt"/>
+        <IsPartOfProject Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="history.txt"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="capnumlock"/>
+      <Filename Value="capnumlock$(TargetOS)"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
@@ -68,6 +77,8 @@
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>
+      <TargetCPU Value="i386"/>
+      <TargetOS Value="win32"/>
       <Optimizations>
         <OptimizationLevel Value="2"/>
       </Optimizations>

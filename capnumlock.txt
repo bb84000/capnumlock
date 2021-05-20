@@ -1,4 +1,4 @@
-CapNumLock - Version 0.5.0.0
+CapNumLock - Version 0.5.1.0
 
 Indique l'état de la touche de verrouillage des majuscules (Caps lock) et l'activation
 du pavé numérique (Num Lock) dans la zone de notification (Tray).
